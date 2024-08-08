@@ -11,7 +11,7 @@ const sampleDataForTopicListItem = {
 const TopicListItem = (props) => {
   return (
     <div className="topic-list__item">
-      { props.label}
+      { props.title}
     </div>
   );
 };
