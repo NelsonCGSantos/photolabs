@@ -3,20 +3,22 @@ import PhotoFavButton from './PhotoFavButton';
 import "../styles/PhotoListItem.scss";
 
 
-const PhotoListItem = ({ photo }) => {
+const PhotoListItem = (props) => {
+  const {id, location, urls, user: { username, profile }} = props.photo;
+
   return (
-    <div className="photo-list__item">
-      <img src={photo.imageSource} alt="Photo" className="photo-list__image"/>
-      <div className="photo-list__user-details">
-        <img src={photo.profile} alt={`${photo.username}'s profile`} className="photo-list__user-profile"/>
+    <div className="photo-list__item" key={id}>
+      <PhotoFavButton />
+      <img className="photo-list__image" src={urls.regular} alt="" />
+      <div>
+        <img className="photo-list__user-profile" src={profile} alt="" />
         <div className="photo-list__user-info">
-          <p>{photo.username}</p>
-          <p className="photo-list__user-location">{`${photo.location.city}, ${photo.location.country}`}</p>
+          <span className="photo-list__user-details">{username}</span>
+          <span className="photo-list__user-location">{location.city}, {location.country}</span>
         </div>
       </div>
-      <PhotoFavButton />
     </div>
   );
-}
+};
 
 export default PhotoListItem;
