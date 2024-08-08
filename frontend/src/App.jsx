@@ -11,7 +11,6 @@ const App = () => (
   <div className="App">
     {/* { Array.from(Array(3)).map((_, index) => <PhotoListItem key={index}/>) } */}
     <TopNavigation/>
-    <TopicList />
     <PhotoList />
   </div>
 );
