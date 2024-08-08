@@ -1,12 +1,14 @@
 import React from 'react';
-
 import './App.scss';
 import HomeRoute from 'components/HomeRoute';
+import photos from 'mocks/photos';
+import topics from 'mocks/topics';
+
 
 
 const App = () => (
   <div className="App">
-  <HomeRoute/>
+  <HomeRoute topics={topics} photos={photos} />
   </div>
 );
 
