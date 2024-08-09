@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useContext } from 'react';
+import { FavoriteContext } from 'helpers/FavoriteContext';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
@@ -21,18 +22,3 @@ function PhotoFavButton() {
 export default PhotoFavButton;
 
 
-/*function PhotoFavButton() {
-  const [isFavorited, setIsFavorited] = useState(false);
-
-  const handleClick = () => {
-    setIsFavorited(!isFavorited);
-  };
-
-  return (
-    <div className="photo-fav-button" onClick={handleClick}>
-      {isFavorited ? '★' : '☆'}
-    </div>
-  );
-};
-
-export default PhotoFavButton;*/

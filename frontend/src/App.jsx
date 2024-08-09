@@ -6,6 +6,8 @@ import topics from 'mocks/topics';
 
 
 
+
+
 const App = () => (
   <div className="App">
   <HomeRoute topics={topics} photos={photos} />
