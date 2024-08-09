@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useContext } from 'react';
-import { FavoriteContext } from 'helpers/FavoriteContext';
+
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
