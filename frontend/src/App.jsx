@@ -1,17 +1,14 @@
-import React from 'react';
-import './App.scss';
-import HomeRoute from 'routes/HomeRoute';
-import photos from 'mocks/photos';
-import topics from 'mocks/topics';
+import React from "react";
+import HomeRoute from "routes/HomeRoute";
 
+import "./App.scss";
 
-
-
-
-const App = () => (
-  <div className="App">
-  <HomeRoute topics={topics} photos={photos} />
-  </div>
-);
+const App = () => {
+  return (
+    <div className="App">
+      <HomeRoute />
+    </div>
+  );
+};
 
 export default App;

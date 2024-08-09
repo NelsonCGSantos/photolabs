@@ -3,14 +3,24 @@ import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
 
+const PhotoList = function (props) {
 
-const PhotoList = ({ photos }) => {
+
+  const mappedList = props.photos.map((photo) => {
+
+    const selected = props.isFavorite(photo.id);
+    return <PhotoListItem photo={photo} key={photo.id} selected={selected}
+      handleToggle={() => props.toggleFavorite(photo.id)}
+    />
+  })
+
+
+
   return (
-    <div className="photo-list">
-      {photos.map((photo) => (
-        <PhotoListItem key={photo.id} photo={photo} />
-      ))}
-    </div>
+    <ul className="photo-list">
+      
+      {mappedList}
+    </ul>
   );
 };
 
