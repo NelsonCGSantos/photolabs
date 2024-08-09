@@ -1,11 +1,13 @@
 import React from 'react';
-
+import TopNavigationBar from 'components/TopNavigationBar';
+import PhotoList from 'components/PhotoList';
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = () => {
+const HomeRoute = ({ topics, photos }) => {
   return (
     <div className="home-route">
-      {/* Insert React */}
+      <TopNavigationBar topics={topics} />
+      <PhotoList photos={photos} />
     </div>
   );
 };
