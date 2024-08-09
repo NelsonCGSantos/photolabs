@@ -8,8 +8,8 @@ const PhotoListItem = (props) => {
   const location = photo.location;
 
   return (
-    <div className="photo-list__item">
-      <PhotoFavButton selected={props.selected} onClick={props.handleToggle} />
+    <div className="photo-list__item" onClick={props.onClick}>
+      <PhotoFavButton selected={props.selected} onClick={(e) => { e.stopPropagation(); props.handleToggle(); }} />
       <img className="photo-list__image" src={photo.urls.regular} alt="" />
       <div>
         <img className="photo-list__user-profile" src={user.profile} alt="" />

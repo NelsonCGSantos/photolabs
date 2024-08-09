@@ -12,6 +12,7 @@ const PhotoList = function (props) {
         key={photo.id}
         selected={selected}
         handleToggle={() => props.toggleFavorite(photo.id)}
+        onClick={() => props.onPhotoClick(photo)}
       />
     );
   });
