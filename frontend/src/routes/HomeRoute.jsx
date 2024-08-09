@@ -23,7 +23,7 @@ const HomeRoute = (props) => {
 
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} />
+      <TopNavigationBar topics={topics} favorites={favorites} />
       <PhotoList
         photos={photos}
         isFavorite={isFavorite}
