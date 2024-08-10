@@ -1,63 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import HomeRoute from "routes/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
-
+import { useApplicationData } from "./hooks/useApplicationData";
 import "./App.scss";
-import photos from "mocks/photos";
 
-const App = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [similarPhotos, setSimilarPhotos] = useState([]);
+const App = () => {
+  const {
+    state, 
+    onPhotoSelect,
+    updateToFavPhotoIds,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
 
-  const fetchSimilarPhotos = function (selectedPhoto) {
-    return photos.filter((photo) => photo.id !== selectedPhoto.id);
-  };
-
-  const toggleModal = function (photo) {
-    if (!isModalOpen) {
-      setSelectedPhoto(photo);
-      const similar = fetchSimilarPhotos(photo);
-      setSimilarPhotos(similar);
-    }
-    setIsModalOpen(!isModalOpen);
-  };
-
-  const [favorites, setFavorites] = useState([]);
-
-  const isFavorite = function (id) {
-    return favorites.includes(id);
-  };
-
-  const toggleFavorite = function (id) {
-    if (!favorites.includes(id)) {
-      setFavorites([...favorites, id]);
-      return;
-    }
-
-    setFavorites(favorites.filter((favorite) => favorite !== id));
-  };
-
-  const ifLiked = favorites.length > 0;
+  const { isModalOpen, selectedPhoto, similarPhotos, ifLiked, favorites } = state; 
 
   return (
     <div className="App">
       <HomeRoute
-        toggleModal={toggleModal}
-        toggleFavorite={toggleFavorite}
-        isFavorite={isFavorite}
+        toggleModal={onPhotoSelect}
+        toggleFavorite={updateToFavPhotoIds}
+        isFavorite={(id) => favorites.includes(id)} 
         isFavPhotoExist={ifLiked}
-        favoritedPhotos={favorites}
+        favoritedPhotos={favorites} 
       />
 
       {isModalOpen && (
         <PhotoDetailsModal
-          toggleModal={toggleModal}
+          toggleModal={onClosePhotoDetailsModal}
           photo={selectedPhoto}
           similarPhotos={similarPhotos}
-          toggleFavorite={toggleFavorite}
+          toggleFavorite={updateToFavPhotoIds}
           isFavPhotoExist={ifLiked}
-          isFavorite={isFavorite}
+          isFavorite={(id) => favorites.includes(id)} 
         />
       )}
     </div>
