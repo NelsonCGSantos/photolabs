@@ -12,6 +12,7 @@ const App = () => {
   };
 
   const handleCloseModal = () => {
+    console.log("Modal close triggered");
     setIsModalOpen(false);
     setSelectedPhoto(null);
   };
