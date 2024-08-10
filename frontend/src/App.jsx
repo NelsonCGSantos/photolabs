@@ -12,7 +12,6 @@ const App = () => {
   };
 
   const handleCloseModal = () => {
-   
     setIsModalOpen(false);
     setSelectedPhoto(null);
   };
