@@ -6,22 +6,22 @@ import "./App.scss";
 
 const App = () => {
   const {
-    state, 
+    state,
     onPhotoSelect,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
   } = useApplicationData();
 
-  const { isModalOpen, selectedPhoto, similarPhotos, ifLiked, favorites } = state; 
+  const { isModalOpen, selectedPhoto, similarPhotos, ifLiked, favorites } = state;
 
   return (
     <div className="App">
       <HomeRoute
         toggleModal={onPhotoSelect}
         toggleFavorite={updateToFavPhotoIds}
-        isFavorite={(id) => favorites.includes(id)} 
+        isFavorite={(id) => favorites.includes(id)}
         isFavPhotoExist={ifLiked}
-        favoritedPhotos={favorites} 
+        favoritedPhotos={favorites}
       />
 
       {isModalOpen && (
@@ -31,7 +31,7 @@ const App = () => {
           similarPhotos={similarPhotos}
           toggleFavorite={updateToFavPhotoIds}
           isFavPhotoExist={ifLiked}
-          isFavorite={(id) => favorites.includes(id)} 
+          isFavorite={(id) => favorites.includes(id)}
         />
       )}
     </div>
