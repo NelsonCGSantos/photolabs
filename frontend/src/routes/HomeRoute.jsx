@@ -4,6 +4,7 @@ import TopNavigationBar from "components/TopNavigationBar";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 import "../styles/HomeRoute.scss";
+import FavBadge from "components/FavBadge";
 
 const HomeRoute = (props) => {
   return (

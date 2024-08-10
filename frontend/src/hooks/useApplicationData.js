@@ -68,6 +68,7 @@ export const useApplicationData = () => {
   };
 
   const toggleFavorite = (id) => {
+    
     if (!state.favorites.includes(id)) {
       dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { id } });
     } else {
@@ -82,5 +83,6 @@ export const useApplicationData = () => {
     onPhotoSelect: toggleModal,
     updateToFavPhotoIds: toggleFavorite,
     onClosePhotoDetailsModal: toggleModal,
+    ifLiked
   };
 };
