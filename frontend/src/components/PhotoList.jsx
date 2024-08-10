@@ -3,17 +3,11 @@ import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
 const PhotoList = function (props) {
-  
-
   const mappedList = props.photos.map((photo) => {
-  
-
     const selected =
       typeof props.isFavorite === "function"
         ? props.isFavorite(photo.id)
         : false;
-
-  
 
     return (
       <PhotoListItem
@@ -26,12 +20,7 @@ const PhotoList = function (props) {
     );
   });
 
-  return (
-    <ul className="photo-list">
-      
-      {mappedList}
-    </ul>
-  );
+  return <ul className="photo-list">{mappedList}</ul>;
 };
 
 export default PhotoList;
