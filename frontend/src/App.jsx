@@ -12,7 +12,7 @@ const App = () => {
     onClosePhotoDetailsModal,
   } = useApplicationData();
 
-  const { isModalOpen, selectedPhoto, similarPhotos, ifLiked, favorites } = state;
+  const { isModalOpen, selectedPhoto, similarPhotos, ifLiked, favorites, photoData, topicData } = state;
 
   return (
     <div className="App">
@@ -22,6 +22,8 @@ const App = () => {
         isFavorite={(id) => favorites.includes(id)}
         isFavPhotoExist={ifLiked}
         favoritedPhotos={favorites}
+        photos={photoData} // Pass the photo data
+        topics={topicData} // Pass the topic data
       />
 
       {isModalOpen && (
