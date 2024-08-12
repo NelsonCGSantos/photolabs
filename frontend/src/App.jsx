@@ -10,10 +10,11 @@ const App = () => {
     onPhotoSelect,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
-    fetchPhotosByTopic,  // Add the fetchPhotosByTopic function
+    fetchPhotosByTopic,
+    ifLiked // Ensure this is being passed down
   } = useApplicationData();
 
-  const { isModalOpen, selectedPhoto, similarPhotos, ifLiked, favorites, photoData, topicData } = state;
+  const { isModalOpen, selectedPhoto, similarPhotos, favorites, photoData, topicData } = state;
 
   return (
     <div className="App">
@@ -21,11 +22,11 @@ const App = () => {
         toggleModal={onPhotoSelect}
         toggleFavorite={updateToFavPhotoIds}
         isFavorite={(id) => favorites.includes(id)}
-        isFavPhotoExist={ifLiked}
+        isFavPhotoExist={ifLiked} 
         favoritedPhotos={favorites}
-        photos={photoData} 
-        topics={topicData} 
-        onSelectTopic={fetchPhotosByTopic}  // Pass the function to handle topic selection
+        photos={photoData}
+        topics={topicData}
+        onSelectTopic={fetchPhotosByTopic}
       />
 
       {isModalOpen && (
@@ -34,7 +35,7 @@ const App = () => {
           photo={selectedPhoto}
           similarPhotos={similarPhotos}
           toggleFavorite={updateToFavPhotoIds}
-          isFavPhotoExist={ifLiked}
+          isFavPhotoExist={ifLiked} // Pass ifLiked here
           isFavorite={(id) => favorites.includes(id)}
         />
       )}

@@ -8,11 +8,10 @@ const HomeRoute = ({ topics, photos, isFavPhotoExist, favorites, isFavorite, tog
     <div className="home-route">
       <TopNavigationBar
         topics={topics}
-        isFavPhotoExist={isFavPhotoExist}
+        isFavPhotoExist={isFavPhotoExist}  
         favoritedPhotos={favorites}
-        onSelectTopic={onSelectTopic}  // Pass the onSelectTopic function
+        onSelectTopic={onSelectTopic}  
       />
-
       <PhotoList
         photos={photos}
         isFavorite={isFavorite}

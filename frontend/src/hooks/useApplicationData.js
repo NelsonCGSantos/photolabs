@@ -123,6 +123,7 @@ export const useApplicationData = () => {
     onPhotoSelect: toggleModal,
     updateToFavPhotoIds: toggleFavorite,
     onClosePhotoDetailsModal: toggleModal,
-    fetchPhotosByTopic, // Expose the new function
+    fetchPhotosByTopic, 
+    ifLiked
   };
 };
