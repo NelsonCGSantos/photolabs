@@ -8,6 +8,7 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   CLOSE_MODAL: 'CLOSE_MODAL',
+  SET_PHOTOS_BY_TOPIC: 'SET_PHOTOS_BY_TOPIC',
 };
 
 function reducer(state, action) {
@@ -23,6 +24,7 @@ function reducer(state, action) {
         favorites: state.favorites.filter(id => id !== action.payload.id),
       };
     case ACTIONS.SET_PHOTO_DATA:
+    case ACTIONS.SET_PHOTOS_BY_TOPIC:
       return { ...state, photoData: action.payload };
     case ACTIONS.SET_TOPIC_DATA:
       return { ...state, topicData: action.payload };
@@ -50,8 +52,8 @@ export const useApplicationData = () => {
     selectedPhoto: null,
     similarPhotos: [],
     favorites: [],
-    photoData: [],     
-    topicData: [],     
+    photoData: [],
+    topicData: [],
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -73,12 +75,26 @@ export const useApplicationData = () => {
         console.error("There was a problem with the fetch operation:", error);
       });
   }, []);
-  
+
   useEffect(() => {
     fetch("/api/topics")
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
   }, []);
+
+  const fetchPhotosByTopic = (topic_id) => {
+    fetch(`/api/topics/photos/${topic_id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: data }))
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  };
 
   const toggleModal = (photo) => {
     if (!state.isModalOpen) {
@@ -107,5 +123,6 @@ export const useApplicationData = () => {
     onPhotoSelect: toggleModal,
     updateToFavPhotoIds: toggleFavorite,
     onClosePhotoDetailsModal: toggleModal,
+    fetchPhotosByTopic, // Expose the new function
   };
 };

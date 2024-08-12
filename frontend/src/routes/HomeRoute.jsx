@@ -3,13 +3,14 @@ import PhotoList from "components/PhotoList";
 import TopNavigationBar from "components/TopNavigationBar";
 import "../styles/HomeRoute.scss";
 
-const HomeRoute = ({ topics, photos, isFavPhotoExist, favorites, isFavorite, toggleFavorite, toggleModal }) => {
+const HomeRoute = ({ topics, photos, isFavPhotoExist, favorites, isFavorite, toggleFavorite, toggleModal, onSelectTopic }) => {
   return (
     <div className="home-route">
       <TopNavigationBar
         topics={topics}
         isFavPhotoExist={isFavPhotoExist}
         favoritedPhotos={favorites}
+        onSelectTopic={onSelectTopic}  // Pass the onSelectTopic function
       />
 
       <PhotoList
@@ -23,4 +24,3 @@ const HomeRoute = ({ topics, photos, isFavPhotoExist, favorites, isFavorite, tog
 };
 
 export default HomeRoute;
-
