@@ -50,8 +50,8 @@ export const useApplicationData = () => {
     selectedPhoto: null,
     similarPhotos: [],
     favorites: [],
-    photoData: [],     // Add this
-    topicData: [],     // Add this
+    photoData: [],     
+    topicData: [],     
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
