@@ -1,28 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import PhotoList from "components/PhotoList";
 import TopNavigationBar from "components/TopNavigationBar";
-import photos from "mocks/photos";
-import topics from "mocks/topics";
 import "../styles/HomeRoute.scss";
-import FavBadge from "components/FavBadge";
 
-const HomeRoute = (props) => {
+const HomeRoute = ({ topics, photos, isFavPhotoExist, favorites, isFavorite, toggleFavorite, toggleModal }) => {
   return (
     <div className="home-route">
       <TopNavigationBar
         topics={topics}
-        isFavPhotoExist={props.isFavPhotoExist}
-        favoritedPhotos={props.favorites}
+        isFavPhotoExist={isFavPhotoExist}
+        favoritedPhotos={favorites}
       />
 
       <PhotoList
         photos={photos}
-        isFavorite={props.isFavorite}
-        toggleFavorite={props.toggleFavorite}
-        toggleModal={props.toggleModal}
+        isFavorite={isFavorite}
+        toggleFavorite={toggleFavorite}
+        toggleModal={toggleModal}
       />
     </div>
   );
 };
 
 export default HomeRoute;
+

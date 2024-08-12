@@ -1,5 +1,4 @@
-import { useReducer } from "react";
-import photos from "mocks/photos";
+import { useReducer, useEffect } from "react";
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -23,6 +22,10 @@ function reducer(state, action) {
         ...state,
         favorites: state.favorites.filter(id => id !== action.payload.id),
       };
+    case ACTIONS.SET_PHOTO_DATA:
+      return { ...state, photoData: action.payload };
+    case ACTIONS.SET_TOPIC_DATA:
+      return { ...state, topicData: action.payload };
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
@@ -47,13 +50,35 @@ export const useApplicationData = () => {
     selectedPhoto: null,
     similarPhotos: [],
     favorites: [],
+    photoData: [],     
+    topicData: [],     
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const fetchSimilarPhotos = (selectedPhoto) => {
-    return photos.filter((photo) => photo.id !== selectedPhoto.id);
+    return state.photoData.filter((photo) => photo.id !== selectedPhoto.id);
   };
+
+  useEffect(() => {
+    fetch("/api/photos")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  }, []);
+  
+  useEffect(() => {
+    fetch("/api/topics")
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
+  }, []);
 
   const toggleModal = (photo) => {
     if (!state.isModalOpen) {
@@ -68,7 +93,6 @@ export const useApplicationData = () => {
   };
 
   const toggleFavorite = (id) => {
-    
     if (!state.favorites.includes(id)) {
       dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { id } });
     } else {
@@ -83,6 +107,5 @@ export const useApplicationData = () => {
     onPhotoSelect: toggleModal,
     updateToFavPhotoIds: toggleFavorite,
     onClosePhotoDetailsModal: toggleModal,
-    ifLiked
   };
 };
