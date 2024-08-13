@@ -5,12 +5,11 @@ import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = (props) => {
-  const { photo, similarPhotos, toggleModal } = props;
-  const selected =
-    typeof props.isFavorite === "function" ? props.isFavorite(photo.id) : false;
+  const { photo, similarPhotos, toggleModal, darkMode } = props; // Added darkMode prop
+  const selected = typeof props.isFavorite === "function" ? props.isFavorite(photo.id) : false;
 
   return (
-    <div className="photo-details-modal">
+    <div className={`photo-details-modal ${darkMode ? "dark-mode" : ""}`}> {/* Apply dark-mode class if darkMode is true */}
       <div className="photo-details-modal__top-bar">
         <button className="photo-details-modal__close-button" onClick={toggleModal}>
           <img src={closeSymbol} alt="close symbol" />

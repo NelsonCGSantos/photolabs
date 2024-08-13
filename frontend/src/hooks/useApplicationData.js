@@ -9,6 +9,7 @@ export const ACTIONS = {
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   CLOSE_MODAL: 'CLOSE_MODAL',
   SET_PHOTOS_BY_TOPIC: 'SET_PHOTOS_BY_TOPIC',
+  TOGGLE_THEME: 'TOGGLE_THEME',  
 };
 
 function reducer(state, action) {
@@ -41,6 +42,11 @@ function reducer(state, action) {
         isModalOpen: false,
         selectedPhoto: null,
       };
+    case ACTIONS.TOGGLE_THEME:
+      return {
+        ...state,
+        darkMode: !state.darkMode,
+      };
     default:
       throw new Error(`Unsupported action type: ${action.type}`);
   }
@@ -54,6 +60,7 @@ export const useApplicationData = () => {
     favorites: [],
     photoData: [],
     topicData: [],
+    darkMode: false, 
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -116,6 +123,10 @@ export const useApplicationData = () => {
     }
   };
 
+  const toggleTheme = () => {
+    dispatch({ type: ACTIONS.TOGGLE_THEME });
+  };
+
   const ifLiked = state.favorites.length > 0;
 
   return {
@@ -123,7 +134,8 @@ export const useApplicationData = () => {
     onPhotoSelect: toggleModal,
     updateToFavPhotoIds: toggleFavorite,
     onClosePhotoDetailsModal: toggleModal,
-    fetchPhotosByTopic, 
-    ifLiked
+    fetchPhotosByTopic,
+    toggleTheme, 
+    ifLiked,
   };
 };

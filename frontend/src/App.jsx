@@ -11,22 +11,24 @@ const App = () => {
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
     fetchPhotosByTopic,
-    ifLiked // Ensure this is being passed down
+    ifLiked,
+    toggleTheme,
   } = useApplicationData();
 
-  const { isModalOpen, selectedPhoto, similarPhotos, favorites, photoData, topicData } = state;
+  const { isModalOpen, selectedPhoto, similarPhotos,favorites, photoData, topicData, darkMode } = state;
 
   return (
-    <div className="App">
+    <div className="App" data-theme={darkMode ? "dark" : "light"}>
+      <button className="theme-toggle-button" onClick={toggleTheme}></button>
       <HomeRoute
         toggleModal={onPhotoSelect}
         toggleFavorite={updateToFavPhotoIds}
         isFavorite={(id) => favorites.includes(id)}
-        isFavPhotoExist={ifLiked} 
+        isFavPhotoExist={ifLiked}
         favoritedPhotos={favorites}
-        photos={photoData}
-        topics={topicData}
-        onSelectTopic={fetchPhotosByTopic}
+        photos={photoData} 
+        topics={topicData} 
+        onSelectTopic={fetchPhotosByTopic}  
       />
 
       {isModalOpen && (
@@ -35,8 +37,9 @@ const App = () => {
           photo={selectedPhoto}
           similarPhotos={similarPhotos}
           toggleFavorite={updateToFavPhotoIds}
-          isFavPhotoExist={ifLiked} // Pass ifLiked here
+          isFavPhotoExist={ifLiked}
           isFavorite={(id) => favorites.includes(id)}
+          darkMode={darkMode}  
         />
       )}
     </div>
