@@ -11,7 +11,7 @@ const App = () => {
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
     fetchPhotosByTopic,
-    ifLiked // Ensure this is being passed down
+    ifLiked 
   } = useApplicationData();
 
   const { isModalOpen, selectedPhoto, similarPhotos, favorites, photoData, topicData } = state;
@@ -35,7 +35,7 @@ const App = () => {
           photo={selectedPhoto}
           similarPhotos={similarPhotos}
           toggleFavorite={updateToFavPhotoIds}
-          isFavPhotoExist={ifLiked} // Pass ifLiked here
+          isFavPhotoExist={ifLiked} 
           isFavorite={(id) => favorites.includes(id)}
         />
       )}

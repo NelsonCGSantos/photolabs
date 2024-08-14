@@ -5,9 +5,10 @@ import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = (props) => {
-  const { photo, similarPhotos, toggleModal } = props;
-  const selected =
-    typeof props.isFavorite === "function" ? props.isFavorite(photo.id) : false;
+  const { photo, toggleModal } = props;
+  const similarPhotos = photo.similar_photos; // Use the similar_photos property
+
+  const selected = props.isFavorite ? props.isFavorite(photo.id) : false;
 
   return (
     <div className="photo-details-modal">
@@ -46,7 +47,7 @@ const PhotoDetailsModal = (props) => {
       <div className="photo-details-modal__similar-photos">
         <h1 className="photo-details-modal__header">Similar Photos</h1>
         <PhotoList
-          photos={similarPhotos}
+          photos={similarPhotos} // Pass similar photos directly
           toggleModal={toggleModal}
           toggleFavorite={props.toggleFavorite}
           isFavorite={props.isFavorite}

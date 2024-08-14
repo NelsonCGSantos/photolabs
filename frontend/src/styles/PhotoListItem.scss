@@ -46,3 +46,8 @@
 .photo-list__user-location {
   color: #838383;
 }
+
+.photo-list__item:hover {
+border-radius: 12px;
+border-color: rgb(213, 36, 36);
+}
